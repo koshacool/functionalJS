@@ -1,3 +1,31 @@
+function duckCount() {
+      return Array.prototype.slice.call(arguments).filter(function(obj) {
+        return Object.prototype.hasOwnProperty.call(obj, 'quack')
+      }).length
+    }
+
+//-----------------------------------------------------------
+
+ var slice = Array.prototype.slice
+
+    function logger(namespace) {
+      return function() {
+        console.log.apply(console, [namespace].concat(slice.call(arguments)))
+      }
+    }
+
+    module.exports = logger
+
+//-----------------------------------------------------------
+
+module.exports = function(namespace) {
+      return console.log.bind(console, namespace)
+    }
+
+ //-----------------------------------------------------------
+ 
+    
+
 module.exports = function arrayMap(arr, fn, thisArg) {
     return arr.reduce(function (acc, item, index, arr) {
         acc.push(fn.call(thisArg, item, index, arr))
